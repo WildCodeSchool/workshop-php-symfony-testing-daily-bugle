@@ -41,12 +41,12 @@ Les tests que tu vas mettre en place vont sans doute avoir besoin d'accéder aux
 
 Comme cela est expliqué sur la [documentation de Symfony](https://symfony.com/doc/current/testing.html#configuring-a-database-for-tests), crée un fichier `.env.test.local` à partir du fichier `.env.test` et ajoutes-y la ligne suivante en prenant soin de modifier `db_user`, `db_password` et `db_name` par les valeurs appropriées.
 ```
-DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7"
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=8.0"
 ```
 Tu peux ensuite effectuer les commandes suivantes pour terminer la configuration :
 ```bash
 php bin/console --env=test doctrine:database:create
-php bin/console --env=test doctrine:schema:create
+php bin/console --env=test doctrine:migration:migrate
 php bin/console --env=test doctrine:fixtures:load
 ```
 
@@ -154,5 +154,6 @@ Voici la marche à suivre :
 5. La soumission du fomulaire génére une redirection, il faudra que ton test suive cette redirection afin de vérifier si la page affiche bien le commentaire envoyé.  
 On t'explique ici comment procéder https://symfony.com/doc/current/testing.html#redirecting.
 6. Vérifie que la liste `ul#comments` contient à présent un élément `<li>` et que son texte corresponde au commentaire envoyé. Appuie-toi sur la méthode `filter()` expliquée ici https://symfony.com/doc/current/testing/dom_crawler.html
+7. Lance ton test qui va échouer, puis complète le fichier *show.html.twig* afin d'ajouter effectivement les li manquants pour tes commentaires dans le ul. 
 
 💡 Si un message d'erreur t'indique que le service ne peut être injecté, essaie de vider le cache de Symfony avec la commande `symfony console cache:clear`.
