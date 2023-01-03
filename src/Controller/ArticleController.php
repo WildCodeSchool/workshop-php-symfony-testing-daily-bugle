@@ -37,7 +37,7 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setArticle($article);
             $comment->setCreatedAt(new \DateTimeImmutable());
-            $commentRepository->add($comment, true);
+            $commentRepository->save($comment, true);
             return $this->redirectToRoute('app_article_show', [
                 'id' => $article->getId(),
                 '_fragment' => 'comment'
