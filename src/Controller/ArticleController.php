@@ -16,8 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ArticleController extends AbstractController
 {
-    // @todo this route should be replaced
-    #[Route('/temporary-url-pending-team-decision', name: 'app_article_index')]
+    #[Route('/recent-articles', name: 'app_article_index')]
     public function recentArticles(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
@@ -29,7 +28,8 @@ class ArticleController extends AbstractController
     public function show(
         Article $article,
         Request $request,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        ReadingTime $readingTime
     ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -44,6 +44,7 @@ class ArticleController extends AbstractController
             ]);
         }
         return $this->render('article/show.html.twig', [
+            'reading_time' => $readingTime->calculate($article->getContent()),
             'article' => $article,
             'form' => $form
         ]);
