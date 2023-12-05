@@ -128,10 +128,19 @@ Retour sur la classe `ArticleControllerTest`.
 Le formulaire des pages d'article ajoute bien les commentaires en base de données. Cependant, l'affichage des commentaires, une fois postés, n'a pas été terminé.
 
 Tu vas maintenant solliciter la base de données de l'environnement de test.  
-Installe cette dépendance très pratique qui permet de réinitialiser la base de données entre chaque test afin d'écrire des scénarios automatisés.
+Installe cette dépendance très pratique qui permet de réinitialiser la base de données entre chaque test afin d'écrire des scénarios automatisés.  
+
+Pense à exécuter les recettes du bundle lorsque la question t'es posée en répondant `[Yes]`.
+{: .alert-warning }
 ```bash
 composer require --dev dama/doctrine-test-bundle
 ```
+
+```bash
+Do you want to execute this recipe?
+-> [y] Yes
+```
+
 Active l'extension en adaptant le fichier `phpunit.xml.dist` comme ceci
 
 ```xml
