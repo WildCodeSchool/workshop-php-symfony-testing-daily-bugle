@@ -43,7 +43,7 @@ class ArticleController extends AbstractController
                 '_fragment' => 'comment'
             ]);
         }
-        return $this->renderForm('article/show.html.twig', [
+        return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form
         ]);
