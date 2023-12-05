@@ -1,5 +1,3 @@
-![](https://github.com/WildCodeSchool/workshop-symfony-testing-daily-bugle/blob/main/assets/images/daily_buggle_logo.png?raw=true)
-
 # Daily Bugle - new features
 
 De nouvelles features sont au sprint backlog de l'équipe dev du Daily Bugle.  
@@ -52,9 +50,9 @@ php bin/console --env=test doctrine:fixtures:load
 
 Ta base de données de test est prête. Tu peux attaquer les features 🚀.
 
-## Simple test d'application : WebTestCase
+## 1. Simple test d'application : WebTestCase
 Garde ce lien sous le coude 😎  
-   https://symfony.com/doc/current/testing.html#application-tests
+[https://symfony.com/doc/current/testing.html#application-tests](https://symfony.com/doc/current/testing.html#application-tests)
    
 Tous les tests que tu vas réaliser devront être rangés dans le dossier `/tests` en reproduisant la même structure que celle du dossier `/src`.  
 Le premier test va concerner la classe `ArticleController` puisque tu vas tester la page des articles récents gérée par la méthode `recentArticles()`.  
@@ -85,11 +83,11 @@ php bin/phpunit
 Modifie le code source du projet pour passer le test avec succès.
    
 
-## Test d'intégration :  service ReadingTime
+## 2. Test d'intégration :  service&nbsp;ReadingTime
 
 Liens utiles :  
-- https://symfony.com/doc/current/testing.html#integration-tests
-- https://symfony.com/doc/current/testing.html#retrieving-services-in-the-test  
+- [https://symfony.com/doc/current/testing.html#integration-tests](https://symfony.com/doc/current/testing.html#integration-tests)
+- [https://symfony.com/doc/current/testing.html#retrieving-services-in-the-test](https://symfony.com/doc/current/testing.html#retrieving-services-in-the-test)  
 
 Le prochain test concerne le service ReadingTime, partiellement écrit par le précédent développeur, et sa méthode `calculate()`.  
 Comme tu le sais, dans Symfony les services sont collectés par le conteneur de services.  
@@ -119,11 +117,11 @@ Voici un exemple de tests à effectuer, tu peux en écrire plus bien entendu :
 
 Lorsque les tests sont validés avec `php bin/phpunit`, il n'y a plus qu'à terminer le branchement dans le code source. Injecte ton service à la méthode `show()` du controller `ArticleController`. Le temps de lecture peut être affiché grâce à la variable `reading_time` déjà présente dans le template `show.html.twig`.
 
-## Test d'application complexe : soumission d'un formulaire
+## 3. Test d'application complexe : soumission&nbsp;d'un&nbsp;formulaire
 
 Lien utiles : 
-- https://symfony.com/doc/current/testing.html#submitting-forms
-- https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test
+- [https://symfony.com/doc/current/testing.html#submitting-forms](https://symfony.com/doc/current/testing.html#submitting-forms)
+- [https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test](https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test)
 
 Retour sur la classe `ArticleControllerTest`.  
 
@@ -131,12 +129,12 @@ Le formulaire des pages d'article ajoute bien les commentaires en base de donné
 
 Tu vas maintenant solliciter la base de données de l'environnement de test.  
 Installe cette dépendance très pratique qui permet de réinitialiser la base de données entre chaque test afin d'écrire des scénarios automatisés.
-```
+```bash
 composer require --dev dama/doctrine-test-bundle
 ```
 Active l'extension en adaptant le fichier `phpunit.xml.dist` comme ceci
 
-```
+```xml
 <phpunit>
     <!-- ... -->
 
@@ -145,15 +143,15 @@ Active l'extension en adaptant le fichier `phpunit.xml.dist` comme ceci
     </extensions>
 </phpunit>
 ```
-https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test
+[https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test](https://symfony.com/doc/current/testing.html#resetting-the-database-automatically-before-each-test)
 
 Voici la marche à suivre :
 1. Crée dans la classe `ArticleControllerTest` la méthode `testCommentForm()`.
 2. Tu vas avoir besoin d'accéder aux champs du formulaire. En suivant la documentation, vérifie d'abord que la route `/articles/1` existe. Puis, avec ton crawler, sélectionne le bouton de soumission du formulaire `comment_submit`. Tu peux ensuite récupérer le formulaire auquel il est associé.
 4. Simule l'envoi du formulaire avec un commentaire de test.
 5. La soumission du fomulaire génére une redirection, il faudra que ton test suive cette redirection afin de vérifier si la page affiche bien le commentaire envoyé.  
-On t'explique ici comment procéder https://symfony.com/doc/current/testing.html#redirecting.
-6. Vérifie que la liste `ul#comments` contient à présent un élément `<li>` et que son texte corresponde au commentaire envoyé. Appuie-toi sur la méthode `filter()` expliquée ici https://symfony.com/doc/current/testing/dom_crawler.html
-7. Lance ton test qui va échouer, puis complète le fichier *show.html.twig* afin d'ajouter effectivement les li manquants pour tes commentaires dans le ul. 
+On t'explique ici comment procéder [https://symfony.com/doc/current/testing.html#redirecting](https://symfony.com/doc/current/testing.html#redirecting).
+6. Vérifie que la liste `ul#comments` contient à présent un élément `<li>` et que son texte corresponde au commentaire envoyé. Appuie-toi sur la méthode `filter()` expliquée ici [https://symfony.com/doc/current/testing/dom_crawler.html](https://symfony.com/doc/current/testing/dom_crawler.html)
+7. Lance ton test qui va échouer, puis complète le fichier *show.html.twig* afin d'ajouter effectivement les `<li>` manquants pour tes commentaires dans le `<ul>`. 
 
 💡 Si un message d'erreur t'indique que le service ne peut être injecté, essaie de vider le cache de Symfony avec la commande `symfony console cache:clear`.

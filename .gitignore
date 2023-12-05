@@ -1,5 +1,7 @@
 .idea
 .vscode
+.DS_Store
+_site
 /public/uploads/
 ###> symfony/framework-bundle ###
 /.env.local
