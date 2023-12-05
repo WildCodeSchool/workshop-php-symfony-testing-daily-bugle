@@ -129,12 +129,12 @@ Le formulaire des pages d'article ajoute bien les commentaires en base de donné
 
 Tu vas maintenant solliciter la base de données de l'environnement de test.  
 Installe cette dépendance très pratique qui permet de réinitialiser la base de données entre chaque test afin d'écrire des scénarios automatisés.
-```
+```bash
 composer require --dev dama/doctrine-test-bundle
 ```
 Active l'extension en adaptant le fichier `phpunit.xml.dist` comme ceci
 
-```
+```xml
 <phpunit>
     <!-- ... -->
 
