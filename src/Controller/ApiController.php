@@ -20,6 +20,6 @@ class ApiController extends AbstractController
     #[Route('/articles/search', name: 'articles_search')]
     public function searchArticle(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
-        return $this->json($articleRepository->search($request->get('q')));
+        return $this->json($articleRepository->search($request->get('q')), 200, [], ['groups' => 'article:search']);
     }
 }

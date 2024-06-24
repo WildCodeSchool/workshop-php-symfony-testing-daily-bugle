@@ -6,8 +6,8 @@ use App\Repository\ArticleRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -15,9 +15,11 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['article:search'])]
     private ?int $id;
 
     #[ORM\Column(type: 'string', length: 250)]
+    #[Groups(['article:search'])]
     private string $title;
 
     #[ORM\Column(type: 'string', length: 250)]
