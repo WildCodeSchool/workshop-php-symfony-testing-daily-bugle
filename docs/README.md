@@ -16,8 +16,6 @@ Pense à lancer les premières commandes habituelles après un clone, à savoir 
 
 ```bash
 composer install
-yarn install
-yarn run dev
 ```
 Tu peux ensuite créer ton fichier `.env.local` en renseignant tes identifiants de BDD pour MYSQL. Et si tu souhaites voir ce que donne le projet dans l'état actuel, effectue la série :
 
